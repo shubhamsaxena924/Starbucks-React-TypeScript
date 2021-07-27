@@ -9,7 +9,7 @@ interface Props {
 
 const TabContent: React.FC<Props> = (props) => {
   return (
-    <div className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center pb-12 mx-auto bg-primary-200 md:flex-row">
+    <div className="absolute top-0 left-0 right-0 flex flex-col items-center justify-center pb-12 mx-auto shadow-inner bg-primary-200 md:flex-row">
       <div className="flex-shrink-0 py-8 md:py-0">
         <img
           className="md:h-60 mb-star md:mb-0"
