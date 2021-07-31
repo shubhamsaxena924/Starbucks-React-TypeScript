@@ -1,10 +1,15 @@
-function Nav() {
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+
+interface Props {}
+
+const Nav: React.FC<Props> = (props) => {
   return (
     <header className="bg-white">
       <nav>
         <div className="flex items-center justify-center px-6 m-auto md:px-8">
           <div className="w-10 my-4 2xl:absolute md:w-14 md:ml-0 md:mr-4 lg:mr-7">
-            <a href="#">
+            <Link to="#">
               <svg
                 className="text-black rounded"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +33,6 @@ function Nav() {
                   font-weight="none"
                   font-size="none"
                   text-anchor="none"
-                  style={{ "mix-blend-mode": "normal" }}
                 >
                   <path
                     fill="#006341"
@@ -39,41 +43,44 @@ function Nav() {
                   <path d="M53.595 57.01h-1.526v4.105h-.547v-4.105h-1.522v-.51h3.595v.51zM54.236 56.5h.811l1.57 3.618h.011l1.574-3.618h.798v4.615h-.551v-3.869h-.012l-1.653 3.869h-.333l-1.659-3.869h-.011v3.869h-.545v-4.615z"></path>
                 </g>
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center w-full max-w-144">
             <div className="hidden text-sm font-bold tracking-widest md:inline-block">
               <ul>
                 <li className="inline-block">
-                  <a
-                    className="inline-block py-7 lg:py-9 hover:text-green-700"
-                    href="#"
+                  <NavLink
+                    activeClassName="border-b-8 border-primary-300"
+                    className="inline-block py-7 lg:py-9 hover:text-primary-300"
+                    to="/menu"
                   >
                     MENU
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="inline-block pl-4 lg:pl-7">
-                  <a
-                    className="inline-block border-b-8 border-green-700 py-7 lg:py-9 hover:text-green-700"
-                    href="./index.html"
+                  <NavLink
+                    activeClassName="border-b-8 border-primary-300"
+                    className="inline-block py-7 lg:py-9 hover:text-primary-300"
+                    to="/rewards"
                   >
                     REWARDS
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="inline-block pl-4 lg:pl-7">
-                  <a
-                    className="inline-block py-7 lg:py-9 hover:text-green-700"
-                    href="#"
+                  <NavLink
+                    activeClassName="border-b-8 border-primary-300"
+                    className="inline-block py-7 lg:py-9 hover:text-primary-300"
+                    to="/gifts"
                   >
                     GIFT CARDS
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="items-center hidden ml-auto text-sm md:flex">
-              <a
-                className="inline-block mr-10 font-semibold hover:text-green-700"
-                href="#"
+              <Link
+                className="inline-block mr-10 font-semibold hover:text-primary-300"
+                to="#"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -91,11 +98,11 @@ function Nav() {
                   <path d="M12,11.475 C10.5214286,11.475 9.32142857,10.299 9.32142857,8.85 C9.32142857,7.401 10.5214286,6.225 12,6.225 C13.4785714,6.225 14.6785714,7.401 14.6785714,8.85 C14.6785714,10.299 13.4785714,11.475 12,11.475 M12,1.5 C7.85357143,1.5 4.5,4.7865 4.5,8.85 C4.5,14.3625 12,22.5 12,22.5 C12,22.5 19.5,14.3625 19.5,8.85 C19.5,4.7865 16.1464286,1.5 12,1.5"></path>
                 </svg>
                 Find a store
-              </a>
-              <button className="px-4 py-2 font-semibold border border-black rounded-full hover:bg-gray-100">
+              </Link>
+              <button className="px-4 py-2 font-semibold duration-300 border border-black rounded-full hover:bg-primary-100">
                 Sign in
               </button>
-              <button className="px-4 py-2 ml-4 font-semibold text-white bg-black border border-black rounded-full hover:bg-green-800">
+              <button className="px-4 py-2 ml-4 font-semibold text-white duration-300 bg-black border border-black rounded-full hover:bg-primary-400 hover:bg-opacity-90">
                 Join now
               </button>
             </div>
@@ -133,6 +140,6 @@ function Nav() {
       </nav>
     </header>
   );
-}
+};
 
-export default Nav;
+export default React.memo(Nav);
