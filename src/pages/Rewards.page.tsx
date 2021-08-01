@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../components/Banner";
 import GettingStarted from "../components/GettingStarted";
+import GetForFreeTabs from "../components/GetForFreeTabs";
 
 import Hero from "../components/Hero";
 
@@ -13,6 +14,7 @@ const Rewards: React.FC<Props> = (props) => {
         <Banner />
         <Hero />
         <GettingStarted />
+        <GetForFreeTabs />
       </div>
       <div className="h-200"></div>
       <div className="h-200"></div>
