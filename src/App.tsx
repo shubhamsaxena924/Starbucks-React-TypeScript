@@ -1,10 +1,10 @@
 import React from "react";
-import Nav from "./components/Nav";
+import StarbucksNav from "./components/StarbucksNav";
 import Rewards from "./pages/Rewards.page";
 import Gifts from "./pages/Gifts.page";
 import NotFound from "./pages/NotFound.page";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 interface Props {}
 
@@ -12,8 +12,9 @@ const App: React.FC<Props> = (props) => {
   return (
     <>
       <BrowserRouter>
-        <Nav />
+        <StarbucksNav />
         <Switch>
+          <Redirect from="/" to="/rewards" exact></Redirect>
           <Route path="/rewards">
             <Rewards />
           </Route>

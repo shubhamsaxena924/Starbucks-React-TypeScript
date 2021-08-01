@@ -1,9 +1,10 @@
 import React from "react";
-import Banner from "../components/Banner";
-import GettingStarted from "../components/GettingStarted";
-import GetForFreeTabs from "../components/GetForFreeTabs";
+import RewardsBanner from "../components/RewardsBanner";
+import RewardsGettingStarted from "../components/RewardsGettingStarted";
+import RewardsForFreeTabs from "../components/RewardsForFreeTabs";
 
-import Hero from "../components/Hero";
+import RewardsHero from "../components/RewardsHero";
+import RewardsEndlessExtras from "../components/RewardsEndlessExtras";
 
 interface Props {}
 
@@ -11,13 +12,12 @@ const Rewards: React.FC<Props> = (props) => {
   return (
     <>
       <div>
-        <Banner />
-        <Hero />
-        <GettingStarted />
-        <GetForFreeTabs />
+        <RewardsBanner />
+        <RewardsHero />
+        <RewardsGettingStarted />
+        <RewardsForFreeTabs />
+        <RewardsEndlessExtras />
       </div>
-      <div className="h-200"></div>
-      <div className="h-200"></div>
     </>
   );
 };

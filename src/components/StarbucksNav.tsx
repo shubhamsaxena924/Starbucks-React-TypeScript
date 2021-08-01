@@ -1,15 +1,24 @@
-import { Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 interface Props {}
 
-const Nav: React.FC<Props> = (props) => {
+const StarbucksNav: React.FC<Props> = (props) => {
+  const [isTransitionLeaving, setIsTransitionLeaving] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  window
+    .matchMedia("(min-width: 768px)")
+    .addEventListener("change", () => setIsMenuOpen(false));
   return (
-    <header className="top-0 left-0 right-0 z-30 lg:sticky">
-      <nav className="z-30 bg-white shadow-lg">
+    <header
+      className={
+        "top-0 left-0 right-0 z-30 lg:sticky " +
+        (isMenuOpen ? "w-screen" : "w-full")
+      }
+    >
+      <nav className="relative z-30 bg-white shadow-lg">
         <div className="flex items-center justify-center px-6 m-auto md:px-8">
           <div className="w-10 my-4 2xl:absolute md:w-14 md:ml-0 md:mr-4 lg:mr-7">
             <Link to="#">
@@ -110,45 +119,20 @@ const Nav: React.FC<Props> = (props) => {
               </button>
             </div>
             <div className="flex p-2 ml-auto duration-700 ease-out rounded-full md:hidden hover:bg-gray-100">
-              <button onClick={() => setIsMenuOpen((open) => !open)}>
-                <svg
-                  className={isMenuOpen ? "hidden" : ""}
-                  viewBox="0 0 24 24"
-                  preserveAspectRatio="xMidYMid meet"
-                  aria-hidden="true"
-                  focusable="false"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    overflow: "visible",
-                    fill: "currentcolor",
-                  }}
-                >
+              <button
+                className={"menu " + (isMenuOpen ? "opened" : "")}
+                onClick={() => setIsMenuOpen((open) => !open)}
+                disabled={isTransitionLeaving}
+              >
+                <svg className="w-8 h-8" viewBox="0 0 100 100">
                   <path
-                    className=" sb-hamburgerButton-middleLine-CLOSED sb-hamburgerButton-animation"
-                    d="M21,12.9H3c-0.5,0-0.9-0.4-0.9-0.9s0.4-0.9,0.9-0.9h18c0.5,0,0.9,0.4,0.9,0.9S21.5,12.9,21,12.9z"
-                  ></path>
+                    className="line line1"
+                    d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+                  />
+                  <path className="line line2" d="M 20,50 H 80" />
                   <path
-                    className=" sb-hamburgerButton-topLine-CLOSED sb-hamburgerButton-animation sb-hamburgerButton-animation-outer-lines"
-                    d="M21,6.9H3C2.5,6.9,2.1,6.5,2.1,6S2.5,5.1,3,5.1h18c0.5,0,0.9,0.4,0.9,0.9S21.5,6.9,21,6.9z"
-                  ></path>
-                  <path
-                    className=" sb-hamburgerButton-bottomLine-CLOSED sb-hamburgerButton-animation sb-hamburgerButton-animation-outer-lines"
-                    d="M21,18.9H3c-0.5,0-0.9-0.4-0.9-0.9s0.4-0.9,0.9-0.9h18c0.5,0,0.9,0.4,0.9,0.9S21.5,18.9,21,18.9z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={isMenuOpen ? "h-6 w-6" : "hidden"}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
+                    className="line line3"
+                    d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
                   />
                 </svg>
               </button>
@@ -158,8 +142,16 @@ const Nav: React.FC<Props> = (props) => {
       </nav>
       {/* trick to move the content below the fixed nav bar when height of nav bar changes */}
       {/* <div className="hidden lg:block lg:relative lg:h-24"></div> */}
-      <Transition.Root show={isMenuOpen} as={Fragment}>
-        <div>
+      <Transition.Root
+        show={isMenuOpen}
+        as={Fragment}
+        beforeLeave={() => setIsTransitionLeaving(() => true)}
+        afterLeave={() => setIsTransitionLeaving(() => false)}
+      >
+        <Dialog
+          open={isMenuOpen}
+          onClose={() => setIsMenuOpen((open) => false)}
+        >
           <Transition.Child
             as={Fragment}
             enter="transition-opacity duration-500"
@@ -170,7 +162,7 @@ const Nav: React.FC<Props> = (props) => {
             leaveFrom="opacity-50"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 z-10 transform bg-black"></div>
+            <Dialog.Overlay className="fixed inset-0 z-10 transform bg-black"></Dialog.Overlay>
           </Transition.Child>
           <Transition.Child
             as={Fragment}
@@ -234,10 +226,10 @@ const Nav: React.FC<Props> = (props) => {
               </Link>
             </div>
           </Transition.Child>
-        </div>
+        </Dialog>
       </Transition.Root>
     </header>
   );
 };
 
-export default React.memo(Nav);
+export default React.memo(StarbucksNav);

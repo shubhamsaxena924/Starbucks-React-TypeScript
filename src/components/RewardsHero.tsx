@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 interface Props {}
 
-const Hero: React.FC<Props> = (props) => {
+const RewardsHero: React.FC<Props> = (props) => {
   return (
     <>
       <div className="mb-20 bg-primary-200 md:mb-32">
@@ -47,4 +47,4 @@ const Hero: React.FC<Props> = (props) => {
   );
 };
 
-export default React.memo(Hero);
+export default React.memo(RewardsHero);

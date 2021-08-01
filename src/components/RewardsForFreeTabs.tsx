@@ -6,7 +6,7 @@ import TabContent from "./TabContent";
 
 interface Props {}
 
-const GetForFreeTabs: React.FC<Props> = (props) => {
+const RewardsForFreeTabs: React.FC<Props> = (props) => {
   const [activeTab, setActiveTab] = useState<number>(0);
   return (
     <Carousel title="Get your favorites for free" setActive={setActiveTab}>
@@ -94,4 +94,4 @@ const GetForFreeTabs: React.FC<Props> = (props) => {
   );
 };
 
-export default React.memo(GetForFreeTabs);
+export default React.memo(RewardsForFreeTabs);

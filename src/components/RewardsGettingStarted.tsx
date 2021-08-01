@@ -3,7 +3,7 @@ import GettingStartedStep from "./GettingStartedStep";
 
 interface Props {}
 
-const GettingStarted: React.FC<Props> = (props) => {
+const RewardsGettingStarted: React.FC<Props> = (props) => {
   return (
     <div className="justify-center px-4 mb-20 md:mb-32">
       <div className="mx-auto text-sm md:text-base max-w-144">
@@ -98,4 +98,4 @@ const GettingStarted: React.FC<Props> = (props) => {
   );
 };
 
-export default React.memo(GettingStarted);
+export default React.memo(RewardsGettingStarted);

@@ -22,12 +22,12 @@ const Carousel: React.FC<Props> = ({ title, children, setActive }) => {
   // var translatecss = "translate(" + xTrans +"%)";
 
   return (
-    <div>
+    <div className="mb-20 md:mb-32">
       <div className="pt-12 bg-primary-100">
         <h2 className="px-4 pb-4 text-2xl font-semibold text-center md:text-3xl md:pb-12">
           {title}
         </h2>
-        <div className="relative w-full pb-1 mx-auto max-w-54">
+        <div className="w-full mx-auto max-w-54">
           <div className="flex items-center">
             {children.map((child, index) => (
               <button
@@ -42,7 +42,7 @@ const Carousel: React.FC<Props> = ({ title, children, setActive }) => {
             ))}
           </div>
           <div
-            className="absolute h-1 duration-700 ease-in-out transform bg-primary-300"
+            className="h-1 duration-700 ease-in-out bg-primary-300"
             style={{
               width: tabWidth + "%",
               transform: "translate(" + 100 * selectedIndex + "%)",
@@ -51,7 +51,7 @@ const Carousel: React.FC<Props> = ({ title, children, setActive }) => {
         </div>
       </div>
       {/* Actual carousel  console.log("Before transition: " + translatecss)*/}
-      <div className="relative">
+      <div className="relative" style={{ zIndex: -10 }}>
         {children.map((child, index) => (
           <Transition
             as={Fragment}
