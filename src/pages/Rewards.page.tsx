@@ -1,5 +1,7 @@
 import React from "react";
 import Banner from "../components/Banner";
+import GettingStarted from "../components/GettingStarted";
+
 import Hero from "../components/Hero";
 
 interface Props {}
@@ -7,8 +9,13 @@ interface Props {}
 const Rewards: React.FC<Props> = (props) => {
   return (
     <>
-      <Banner />
-      <Hero />
+      <div>
+        <Banner />
+        <Hero />
+        <GettingStarted />
+      </div>
+      <div className="h-200"></div>
+      <div className="h-200"></div>
     </>
   );
 };

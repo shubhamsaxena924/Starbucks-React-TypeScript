@@ -1,12 +1,15 @@
-import React from "react";
+import { Transition } from "@headlessui/react";
+import React, { Fragment } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 interface Props {}
 
 const Nav: React.FC<Props> = (props) => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   return (
-    <header className="bg-white">
-      <nav>
+    <header className="top-0 left-0 right-0 z-30 lg:sticky">
+      <nav className="z-30 bg-white shadow-lg">
         <div className="flex items-center justify-center px-6 m-auto md:px-8">
           <div className="w-10 my-4 2xl:absolute md:w-14 md:ml-0 md:mr-4 lg:mr-7">
             <Link to="#">
@@ -106,9 +109,10 @@ const Nav: React.FC<Props> = (props) => {
                 Join now
               </button>
             </div>
-            <div className="flex p-2 ml-auto rounded-full md:hidden hover:shadow-inner">
-              <button>
+            <div className="flex p-2 ml-auto duration-700 ease-out rounded-full md:hidden hover:bg-gray-100">
+              <button onClick={() => setIsMenuOpen((open) => !open)}>
                 <svg
+                  className={isMenuOpen ? "hidden" : ""}
                   viewBox="0 0 24 24"
                   preserveAspectRatio="xMidYMid meet"
                   aria-hidden="true"
@@ -133,11 +137,105 @@ const Nav: React.FC<Props> = (props) => {
                     d="M21,18.9H3c-0.5,0-0.9-0.4-0.9-0.9s0.4-0.9,0.9-0.9h18c0.5,0,0.9,0.4,0.9,0.9S21.5,18.9,21,18.9z"
                   ></path>
                 </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={isMenuOpen ? "h-6 w-6" : "hidden"}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
             </div>
           </div>
         </div>
       </nav>
+      {/* trick to move the content below the fixed nav bar when height of nav bar changes */}
+      {/* <div className="hidden lg:block lg:relative lg:h-24"></div> */}
+      <Transition.Root show={isMenuOpen} as={Fragment}>
+        <div>
+          <Transition.Child
+            as={Fragment}
+            enter="transition-opacity duration-500"
+            enterFrom="opacity-0"
+            enterTo="opacity-50"
+            entered="opacity-50"
+            leave="transition-opacity duration-500"
+            leaveFrom="opacity-50"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 z-10 transform bg-black"></div>
+          </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="transition-transform duration-500"
+            enterFrom="translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition-transform duration-500"
+            leaveFrom="translate-x-0"
+            leaveTo="translate-x-full"
+          >
+            <div className="fixed top-0 bottom-0 right-0 z-20 p-5 transform bg-white pt-28 w-80">
+              <ul className="flex flex-col text-lg font-semibold tracking-wider">
+                <li className="m-4">
+                  <button className="flex items-center justify-between w-full font-semibold tracking-wider">
+                    <span>Menu</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-6 h-6 overflow-hidden fill-current"
+                      preserveAspectRatio="xMidYMid meet"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M8.902 17.656c-.293.293-.293.768 0 1.06.293.294.768.294 1.06 0L16.38 12.3c.293-.293.293-.768 0-1.06L9.86 4.72c-.293-.293-.767-.293-1.06 0-.293.293-.293.767 0 1.06l5.99 5.99L8.9 17.656z"></path>
+                    </svg>
+                  </button>
+                </li>
+                <li className="m-4">
+                  <Link to="/rewards">Rewards</Link>
+                </li>
+                <li className="m-4">
+                  <Link to="/gifts">Gift Cards</Link>{" "}
+                </li>
+              </ul>
+              <hr className="mx-3 my-6 border-t-2" />
+              <button className="px-4 py-1 text-sm font-semibold leading-6 duration-300 border border-black rounded-full hover:bg-primary-100">
+                Sign in
+              </button>
+              <button className="px-4 py-1 ml-4 text-sm font-semibold leading-6 text-white duration-300 bg-black border border-black rounded-full hover:bg-primary-400 hover:bg-opacity-90">
+                Join now
+              </button>
+              <Link
+                className="block mt-4 mr-2 font-semibold hover:text-primary-300"
+                to="#"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="inline-block valign-middle pr2"
+                  preserveAspectRatio="xMidYMid meet"
+                  aria-hidden="true"
+                  focusable="false"
+                  style={{
+                    width: "1.5rem",
+                    height: "1.5rem",
+                    overflow: "visible",
+                    fill: "currentcolor",
+                  }}
+                >
+                  <path d="M12,11.475 C10.5214286,11.475 9.32142857,10.299 9.32142857,8.85 C9.32142857,7.401 10.5214286,6.225 12,6.225 C13.4785714,6.225 14.6785714,7.401 14.6785714,8.85 C14.6785714,10.299 13.4785714,11.475 12,11.475 M12,1.5 C7.85357143,1.5 4.5,4.7865 4.5,8.85 C4.5,14.3625 12,22.5 12,22.5 C12,22.5 19.5,14.3625 19.5,8.85 C19.5,4.7865 16.1464286,1.5 12,1.5"></path>
+                </svg>
+                Find a store
+              </Link>
+            </div>
+          </Transition.Child>
+        </div>
+      </Transition.Root>
     </header>
   );
 };
