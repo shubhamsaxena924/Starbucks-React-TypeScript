@@ -31,6 +31,7 @@ const Carousel: React.FC<Props> = ({ title, children, setActive }) => {
           <div className="flex items-center">
             {children.map((child, index) => (
               <button
+                key={index}
                 className="flex-1 px-2 py-4 text-xl font-semibold md:text-2xl"
                 onClick={() => {
                   setSelectedIndex(index);
@@ -54,6 +55,7 @@ const Carousel: React.FC<Props> = ({ title, children, setActive }) => {
       <div className="relative" style={{ zIndex: -10 }}>
         {children.map((child, index) => (
           <Transition
+            key={index}
             as={Fragment}
             unmount={false}
             show={index === selectedIndex}

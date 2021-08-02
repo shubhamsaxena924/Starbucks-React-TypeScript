@@ -48,8 +48,8 @@ const FooterSection: React.FC<Props> = (props) => {
           leaveTo="transform scale-95 opacity-0"
         >
           <ul className={"flex-col h-auto py-8 space-y-6 text-base lg:flex"}>
-            {props.subtitles.map((subtitle) => (
-              <li className="text-gray-500 hover:text-black">
+            {props.subtitles.map((subtitle, index) => (
+              <li key={index} className="text-gray-500 hover:text-black">
                 <a href={subtitle.url}>{subtitle.desc}</a>
               </li>
             ))}
@@ -58,8 +58,8 @@ const FooterSection: React.FC<Props> = (props) => {
         <ul
           className={"flex-col h-full hidden py-8 space-y-6 text-base lg:flex"}
         >
-          {props.subtitles.map((subtitle) => (
-            <li className="text-gray-500 hover:text-black">
+          {props.subtitles.map((subtitle, index) => (
+            <li key={index} className="text-gray-500 hover:text-black">
               <a href={subtitle.url}>{subtitle.desc}</a>
             </li>
           ))}

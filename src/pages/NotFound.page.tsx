@@ -16,10 +16,6 @@ const NotFound: React.FC<Props> = (props) => {
         >
           <Transition.Child
             as={Fragment}
-            enter="transition-opacity duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-70"
-            entered="opacity-70"
             leave="transition-opacity duration-500"
             leaveFrom="opacity-70"
             leaveTo="opacity-0"
