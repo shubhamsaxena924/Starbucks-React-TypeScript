@@ -4,7 +4,7 @@ interface Props {}
 
 const RewardsBanner: React.FC<Props> = (props) => {
   return (
-    <div className="sticky top-0 flex items-center justify-between px-5 text-sm text-white lg:top-25 bg-primary-400 md:pr-8 md:pl-25 lg:pl-28 xl:pl-8 h-14">
+    <div className="sticky top-0 z-10 flex items-center justify-between px-5 text-sm text-white lg:top-25 bg-primary-400 md:pr-8 md:pl-25 lg:pl-28 xl:pl-8 h-14">
       <div className="w-full font-bold 2xl:m-auto max-w-144">
         STARBUCKS® REWARDS
       </div>
