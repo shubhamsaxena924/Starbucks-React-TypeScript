@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Starbucks-React-TypeScript/static/css/main.7b7aebf8.chunk.css",
-    "main.js": "/Starbucks-React-TypeScript/static/js/main.6f23c37a.chunk.js",
-    "main.js.map": "/Starbucks-React-TypeScript/static/js/main.6f23c37a.chunk.js.map",
-    "runtime-main.js": "/Starbucks-React-TypeScript/static/js/runtime-main.4d819dfe.js",
-    "runtime-main.js.map": "/Starbucks-React-TypeScript/static/js/runtime-main.4d819dfe.js.map",
-    "static/js/2.35d91c2c.chunk.js": "/Starbucks-React-TypeScript/static/js/2.35d91c2c.chunk.js",
-    "static/js/2.35d91c2c.chunk.js.map": "/Starbucks-React-TypeScript/static/js/2.35d91c2c.chunk.js.map",
-    "static/js/3.a4883ea1.chunk.js": "/Starbucks-React-TypeScript/static/js/3.a4883ea1.chunk.js",
-    "static/js/3.a4883ea1.chunk.js.map": "/Starbucks-React-TypeScript/static/js/3.a4883ea1.chunk.js.map",
-    "index.html": "/Starbucks-React-TypeScript/index.html",
-    "static/css/main.7b7aebf8.chunk.css.map": "/Starbucks-React-TypeScript/static/css/main.7b7aebf8.chunk.css.map",
-    "static/js/2.35d91c2c.chunk.js.LICENSE.txt": "/Starbucks-React-TypeScript/static/js/2.35d91c2c.chunk.js.LICENSE.txt"
+    "main.css": "/Starbucks-React-TypeScript/rewards/static/css/main.7b7aebf8.chunk.css",
+    "main.js": "/Starbucks-React-TypeScript/rewards/static/js/main.6f23c37a.chunk.js",
+    "main.js.map": "/Starbucks-React-TypeScript/rewards/static/js/main.6f23c37a.chunk.js.map",
+    "runtime-main.js": "/Starbucks-React-TypeScript/rewards/static/js/runtime-main.370c44dd.js",
+    "runtime-main.js.map": "/Starbucks-React-TypeScript/rewards/static/js/runtime-main.370c44dd.js.map",
+    "static/js/2.35d91c2c.chunk.js": "/Starbucks-React-TypeScript/rewards/static/js/2.35d91c2c.chunk.js",
+    "static/js/2.35d91c2c.chunk.js.map": "/Starbucks-React-TypeScript/rewards/static/js/2.35d91c2c.chunk.js.map",
+    "static/js/3.a4883ea1.chunk.js": "/Starbucks-React-TypeScript/rewards/static/js/3.a4883ea1.chunk.js",
+    "static/js/3.a4883ea1.chunk.js.map": "/Starbucks-React-TypeScript/rewards/static/js/3.a4883ea1.chunk.js.map",
+    "index.html": "/Starbucks-React-TypeScript/rewards/index.html",
+    "static/css/main.7b7aebf8.chunk.css.map": "/Starbucks-React-TypeScript/rewards/static/css/main.7b7aebf8.chunk.css.map",
+    "static/js/2.35d91c2c.chunk.js.LICENSE.txt": "/Starbucks-React-TypeScript/rewards/static/js/2.35d91c2c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4d819dfe.js",
+    "static/js/runtime-main.370c44dd.js",
     "static/js/2.35d91c2c.chunk.js",
     "static/css/main.7b7aebf8.chunk.css",
     "static/js/main.6f23c37a.chunk.js"
