@@ -12,7 +12,7 @@ interface Props {}
 const App: React.FC<Props> = (props) => {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/Starbucks-React-TypeScript">
         <StarbucksNav />
         <Switch>
           <Redirect from="/" to="/rewards" exact></Redirect>
