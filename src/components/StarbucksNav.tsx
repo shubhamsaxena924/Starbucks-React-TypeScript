@@ -6,8 +6,10 @@ import { Link, NavLink } from "react-router-dom";
 interface Props {}
 
 const StarbucksNav: React.FC<Props> = (props) => {
-  const [isTransitionLeaving, setIsTransitionLeaving] = useState(false);
+  const [isTransitionLeaving, setIsTransitionLeaving] =
+    useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuLinkClicked, setIsMenuLinkClicked] = useState<boolean>(false);
   window
     .matchMedia("(min-width: 768px)")
     .addEventListener("change", () => setIsMenuOpen(false));
@@ -18,7 +20,7 @@ const StarbucksNav: React.FC<Props> = (props) => {
         (isMenuOpen ? "w-screen" : "w-full")
       }
     >
-      <nav className="relative z-30 bg-white shadow-lg">
+      <nav className="relative z-40 bg-white shadow-lg">
         <div className="flex items-center justify-center px-6 m-auto md:px-8">
           <div className="w-10 my-4 2xl:absolute md:w-14 md:ml-0 md:mr-4 lg:mr-7">
             <Link to="#">
@@ -121,7 +123,10 @@ const StarbucksNav: React.FC<Props> = (props) => {
             <div className="flex p-2 ml-auto duration-700 ease-out rounded-full md:hidden hover:bg-gray-100">
               <button
                 className={"menu " + (isMenuOpen ? "opened" : "")}
-                onClick={() => setIsMenuOpen((open) => !open)}
+                onClick={() => {
+                  setIsMenuOpen((open) => !open);
+                  setIsMenuLinkClicked(() => false);
+                }}
                 disabled={isTransitionLeaving}
               >
                 <svg className="w-8 h-8" viewBox="0 0 100 100">
@@ -150,7 +155,10 @@ const StarbucksNav: React.FC<Props> = (props) => {
       >
         <Dialog
           open={isMenuOpen}
-          onClose={() => setIsMenuOpen((open) => false)}
+          onClose={() => {
+            setIsMenuOpen(() => false);
+            setIsMenuLinkClicked(() => false);
+          }}
         >
           <Transition.Child
             as={Fragment}
@@ -173,10 +181,15 @@ const StarbucksNav: React.FC<Props> = (props) => {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <div className="fixed top-0 bottom-0 right-0 z-20 p-5 transform bg-white pt-28 w-80">
+            <div className="fixed top-0 bottom-0 right-0 z-20 w-3/4 p-5 transform bg-white pt-28">
               <ul className="flex flex-col text-lg font-semibold tracking-wider">
                 <li className="m-4">
-                  <button className="flex items-center justify-between w-full font-semibold tracking-wider">
+                  <button
+                    className="flex items-center justify-between w-full font-semibold tracking-wider"
+                    onClick={() => {
+                      setIsMenuLinkClicked(true);
+                    }}
+                  >
                     <span>Menu</span>
                     <svg
                       viewBox="0 0 24 24"
@@ -189,20 +202,94 @@ const StarbucksNav: React.FC<Props> = (props) => {
                     </svg>
                   </button>
                 </li>
+                {/* Nested transition */}
+                <Transition
+                  show={isMenuLinkClicked}
+                  as={Fragment}
+                  enter="transition-transform duration-500"
+                  enterFrom="translate-x-full"
+                  enterTo="translate-x-0"
+                  leave="transition-transform duration-500"
+                  leaveFrom="translate-x-0"
+                  leaveTo="translate-x-full"
+                >
+                  <div className="fixed top-0 bottom-0 right-0 z-30 w-full transform bg-white">
+                    <button
+                      onClick={() => setIsMenuLinkClicked(() => false)}
+                      className="flex items-center justify-between w-full px-5 pt-20 pb-2 bg-primary-100"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        className={
+                          "rotate-90 w-8 h-8 overflow-visible transform transition-transform duration-300 fill-current"
+                        }
+                        preserveAspectRatio="xMidYMid meet"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path d="M11.96 15.5c-.206 0-.402-.084-.546-.232l-5.188-5.33c-.3-.31-.3-.81 0-1.12.3-.31.79-.31 1.093 0l4.64 4.767 4.723-4.853c.3-.31.79-.31 1.09 0 .303.31.303.812.002 1.122l-5.27 5.414c-.145.148-.34.232-.546.232"></path>
+                      </svg>
+                      <li className="w-full m-4">Menu</li>
+                    </button>
+                    <ul className="flex flex-col p-5 text-lg font-semibold tracking-wider">
+                      <li className="m-4">
+                        <Link
+                          to="/menu"
+                          onClick={() => setIsMenuOpen(() => false)}
+                        >
+                          All Products
+                        </Link>
+                      </li>
+                      <li className="m-4">
+                        <Link
+                          to="/menu"
+                          onClick={() => setIsMenuOpen(() => false)}
+                        >
+                          Featured
+                        </Link>
+                      </li>
+                      <li className="m-4">
+                        <Link
+                          to="/menu"
+                          onClick={() => setIsMenuOpen(() => false)}
+                        >
+                          Previous
+                        </Link>
+                      </li>
+                      <li className="m-4">
+                        <Link
+                          to="/menu"
+                          onClick={() => setIsMenuOpen(() => false)}
+                        >
+                          Favorites
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </Transition>
                 <li className="m-4">
-                  <Link to="/rewards">Rewards</Link>
+                  <Link
+                    to="/rewards"
+                    onClick={() => setIsMenuOpen(() => false)}
+                  >
+                    Rewards
+                  </Link>
                 </li>
                 <li className="m-4">
-                  <Link to="/gifts">Gift Cards</Link>{" "}
+                  <Link to="/gifts" onClick={() => setIsMenuOpen(() => false)}>
+                    Gift Cards
+                  </Link>{" "}
                 </li>
               </ul>
               <hr className="mx-3 my-6 border-t-2" />
-              <button className="px-4 py-1 text-sm font-semibold leading-6 duration-300 border border-black rounded-full hover:bg-primary-100">
-                Sign in
-              </button>
-              <button className="px-4 py-1 ml-4 text-sm font-semibold leading-6 text-white duration-300 bg-black border border-black rounded-full hover:bg-primary-400 hover:bg-opacity-90">
-                Join now
-              </button>
+              <div className="flex flex-col space-y-2 xs:space-y-0 xs:space-x-4 xs:flex-row">
+                <button className="flex-grow-0 flex-shrink-0 px-4 py-1 text-sm font-semibold leading-6 duration-300 border border-black rounded-full hover:bg-primary-100">
+                  Sign in
+                </button>
+                <button className="flex-grow-0 flex-shrink-0 px-4 py-1 text-sm font-semibold leading-6 text-white duration-300 bg-black border border-black rounded-full hover:bg-primary-400 hover:bg-opacity-90">
+                  Join now
+                </button>
+              </div>
               <Link
                 className="block mt-4 mr-2 font-semibold hover:text-primary-300"
                 to="#"

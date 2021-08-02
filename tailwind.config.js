@@ -15,7 +15,14 @@ module.exports = {
       white: colors.white,
       black: colors.black,
       gold: "#cba258",
+      spotify: "#1db954",
+      pinterest: "#BD081C",
+      youtube: "#E62117",
+      instagram: "#dd2a7b",
+      twitter: "#08a0e9",
+      facebook: "#3B5998",
     },
+
     maxWidth: {
       144: "90rem",
       112: "70rem",
@@ -29,6 +36,8 @@ module.exports = {
       200: "50rem",
     },
     screens: {
+      xs: "320px",
+
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
@@ -61,6 +70,10 @@ module.exports = {
         "earn-star-card": "45%",
         "md-card": "5vw",
         placeholder: "215%",
+      },
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
       },
     },
   },

@@ -1,5 +1,6 @@
 import React from "react";
 import StarbucksNav from "./components/StarbucksNav";
+import StarbucksFooter from "./components/StarbucksFooter";
 import Rewards from "./pages/Rewards.page";
 import Gifts from "./pages/Gifts.page";
 import NotFound from "./pages/NotFound.page";
@@ -25,6 +26,7 @@ const App: React.FC<Props> = (props) => {
             <NotFound />
           </Route>
         </Switch>
+        <StarbucksFooter />
       </BrowserRouter>
     </>
   );
